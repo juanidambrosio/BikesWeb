@@ -1,0 +1,30 @@
+{
+  "name": "bikesharing-maintenance-stations",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "build": "gulp default",
+    "clean": "gulp clean"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "bootstrap": ">=4.0.0-alpha.4",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "glob": "^7.1.1",
+    "gulp": ">=3.8.11",
+    "gulp-concat": ">=2.5.2",
+    "gulp-cssmin": ">=0.1.7",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": ">=1.2.0",
+    "morgan": "~1.7.0",
+    "rimraf": ">=2.2.8"
+  },
+  "devDependencies": {
+    "dateformat": "^1.0.12",
+    "dotenv": "^2.0.0",
+    "express-handlebars": "^3.0.0",
+    "q": "^1.4.1"
+  }
+}

@@ -1,0 +1,205 @@
+﻿<Page
+    x:Class="BikeSharing.Client.Kiosk.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BikeSharing.Client.Kiosk.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid
+        KeyDown="Grid_KeyDown"
+        KeyUp="Grid_KeyUp">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Standby">
+                    <VisualState.Setters>
+                        <Setter Target="grdDimmedScreen.Visibility" Value="Visible" />
+                        <Setter Target="grdMainBody.Visibility" Value="Collapsed" />
+                        <Setter Target="btnExit.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CustomerPresent">
+                    <VisualState.Setters>
+                        <Setter Target="grdDimmedScreen.Visibility" Value="Collapsed" />
+                        <Setter Target="grdMainBody.Visibility" Value="Visible" />
+                        <Setter Target="btnExit.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <!--Background-->
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="Assets/bg_city.png" />
+        </Grid.Background>
+
+        <!--Logo-->
+        <Image Source="Assets/logo_bikesharing.png" Width="190" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="24" />
+
+        <!--MainBody-->
+        <Grid 
+            Name="grdMainBody"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Width="480"
+            Height="600"
+            Background="#F0F0F0F0">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Padding="24,12" Foreground="{StaticResource BlueColor}">
+                <Run x:Name="txtWelcomeName" FontSize="32" />
+            </TextBlock>
+
+            <!--System responses-->
+            <RelativePanel 
+                Grid.Row="1"
+                Padding="24,12"
+                MaxWidth="{x:Bind grdMainBody.Width}"
+                Visibility="{x:Bind KioskMessage, Mode=OneWay, Converter={StaticResource visConverter}}">
+                <Image x:Name="imgWhiteCorner" Source="Assets/corner_white.png" VerticalAlignment="Top" Stretch="None" />
+                <Border 
+                    RelativePanel.RightOf="imgWhiteCorner" 
+                    Background="White" 
+                    Padding="12">
+                    <TextBlock
+                            Text="{x:Bind KioskMessage, Mode=OneWay}"
+                            FontSize="24"
+                            TextWrapping="WrapWholeWords" />
+                </Border>
+            </RelativePanel>
+
+            <!--Customer responses-->
+            <RelativePanel
+                Grid.Row="2"
+                Padding="24,12" 
+                MaxWidth="{x:Bind grdMainBody.Width}"
+                HorizontalAlignment="Right"
+                Visibility="{x:Bind CustomerMessage, Mode=OneWay, Converter={StaticResource visConverter}}">
+                <Border 
+                    x:Name="brdCustomerMessage"
+                    Background="{StaticResource BlueColor}"
+                    Padding="12">
+                    <TextBlock 
+                        Text="{x:Bind CustomerMessage, Mode=OneWay}"
+                        FontSize="24"
+                        TextWrapping="WrapWholeWords"/>
+                </Border>
+                <Image Source="Assets/corner_blue.png" VerticalAlignment="Top" Stretch="None" RelativePanel.RightOf="brdCustomerMessage" />
+            </RelativePanel>
+
+            <!--Supplemental information-->
+            <StackPanel Grid.Row="3">
+                <Border 
+                        Margin="24,12"
+                        Visibility="{x:Bind VoiceVerificationPhrase, Mode=OneWay, Converter={StaticResource visConverter}}"
+                        Background="{StaticResource BlueColor}">
+                    <TextBlock 
+                            FontSize="20"
+                            Margin="24,12"
+                            HorizontalAlignment="Center"
+                            TextWrapping="WrapWholeWords"
+                            Text="{x:Bind VoiceVerificationPhrase, Mode=OneWay}"
+                            Foreground="White" />
+                </Border>
+                <Border 
+                        Margin="24,12"
+                        Visibility="{x:Bind ShowRetryButton, Mode=OneWay, Converter={StaticResource visConverter}}">
+                    <Button 
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Content="Retry"
+                            FontSize="48"
+                            Background="White"
+                            Foreground="{StaticResource BlueColor}"
+                            Click="btnRetry_Click" />
+                </Border>
+                <Border 
+                        Margin="24,12"
+                        Visibility="{x:Bind ShowResetButton, Mode=OneWay, Converter={StaticResource visConverter}}">
+                    <Button
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Content="Start over"
+                            FontSize="48"
+                            Background="White"
+                            Foreground="{StaticResource BlueColor}"
+                            Click="btnReset_Click" />
+                </Border>
+                <Grid 
+                        Margin="24,12"
+                        Visibility="{x:Bind ShowMicrophone, Mode=OneWay, Converter={StaticResource visConverter}}" >
+                    <Ellipse  Width="60" Height="60" Name="bgActiveMicrophone"
+                          HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                          Fill="{StaticResource BlueColor}">
+                    </Ellipse>
+                    <Rectangle Width="23" Height="35">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Assets/ico_micro.png" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+                <Grid 
+                        Margin="24,12"
+                        Visibility="{x:Bind ShowVoiceVerificationPassedIcon, Mode=OneWay, Converter={StaticResource visConverter}}" >
+                    <Rectangle Width="60" Height="60">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Assets/bg_ok.png" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Width="23" Height="35">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Assets/ico_ok.png" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        
+        <!--Dimmed Screen-->
+        <Grid Background="#CC000000" x:Name="grdDimmedScreen" Visibility="Collapsed" />
+
+        <!--Video Preview-->
+        <Grid x:Name="grdVideoPreview" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="24" Width="240" Height="160">
+            <CaptureElement Name="videoPreview" Stretch="Uniform" />
+            <Canvas Name="facesCanvas" Background="Transparent"/>
+        </Grid>
+
+        <!--Progress Indicator-->
+        <Grid 
+            Background="#CC000000"
+            Visibility="{x:Bind IsBusy, Mode=OneWay, Converter={StaticResource visConverter}}">
+            <ProgressRing
+                Width="50"
+                Height="50"
+                Foreground="White"
+                IsActive="{x:Bind IsBusy, Mode=OneWay}" />
+        </Grid>
+        
+        <!--TODO (yumeng): Demo-only button to restart the session. The grid needs a focus-able control to be able to receive key events -->
+        <Button 
+            Name="btnExit"
+            
+            BorderThickness="0" Margin="0,0,0,0"
+            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+            Click="Button_Click" Background="Transparent">
+            <Grid Background="Transparent">
+            <Rectangle>
+                <Rectangle.Stroke>
+                    <SolidColorBrush Color="Transparent"/>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="Transparent"></SolidColorBrush></Rectangle.Fill>
+            </Rectangle>
+                <TextBlock Text="     " />
+            </Grid>
+        </Button>
+        <MediaElement x:Name="media" AutoPlay="False" MediaEnded="media_MediaEnded"/>
+    </Grid>
+</Page>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BikeSharing.Rides.Seed.RidePositions": {
+      "commandName": "Project",
+      "commandLineArgs": "--input=C:\\routes --mini=c:\\routes-mini"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@model BikeSharing_Private_Web_Site.Models.RideViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Rides";
+}
+
+@await Component.InvokeAsync("RideList", new { vm = Model })
+

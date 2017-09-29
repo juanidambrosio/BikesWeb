@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BikeSharing.Rides.Seed.Gps": {
+      "commandName": "Project",
+      "commandLineArgs": "--output \"c:\\temp\""
+    }
+  }
+}

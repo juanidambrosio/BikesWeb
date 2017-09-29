@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "calcRidesDistanceTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */45 * * * *"
+    }
+  ],
+  "disabled": false
+}

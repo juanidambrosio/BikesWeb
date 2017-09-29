@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BikeSharing.Rides.Seed": {
+      "commandName": "Project",
+      "commandLineArgs": "--input \"C:\\tripdata\\done\\201606-citibike-tripdata.csv\""
+    }
+  }
+}

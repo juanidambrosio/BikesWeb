@@ -1,0 +1,82 @@
+<div class="container page-container bsh-stations">
+    <div class="row flex-items-xs-bottom">
+        <div class="col-md-3 col-sm-12">
+            <h1>Stations</h1>
+        </div>
+        <div class="col-md-9 col-sm-12 bsh-stations-results-summary">
+            <span>Showing {{stations.length}} of {{pagination.totalItems}} stations - Page {{pagination.currentDisplayPage}} of {{pagination.totalPages}}</span>
+        </div>
+    </div>
+
+
+    <div class="margin-middle-top">
+        <table class="table">
+            <thead class="thead-default">
+                <tr>
+                    <th class="u-align-left">Name</th>
+                    <th class="u-align-left">Address</th>
+                    <th class="u-align-center">Departures</th>
+                    <th class="u-align-center">Arrivals</th>
+                    <th class="u-align-center">Available bikes</th>
+                    <th class="u-align-center">Free slots</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each stations}}
+                <tr>
+                    <td class="u-align-left is-info" scope="row">{{id}}</td>
+                    <td class="u-align-left is-light"><span class="u-ellipsis u-width-200">{{name}}</span></td>
+                    <td class="u-align-center">{{freeSlots}}</td>
+                    <td class="u-align-center">{{parkedBikes}}</td>
+                    <td class="u-align-center {{#if (eq parkedBikes 0)}}is-danger{{/if}}">{{parkedBikes}}/{{total}}</td>
+                    <td class="u-align-center {{#if (eq freeSlots 0)}}is-danger{{/if}}">{{freeSlots}}/{{total}}</td>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <nav>
+                        <ul class="pagination pagination-sm u-float-left">
+                            <li class="page-item">
+                                {{#if (eq pagination.from 0)}}
+                                    <span class="page-link prev is-disabled" aria-label="Previous">
+                                        <span class="icon-ico-arrowcopy"></span>
+                                        <span>Previous</span>
+                                    </span>
+                                {{else}}
+                                    <a class="page-link prev" href="{{pagination.prev}}" aria-label="Previous">
+                                        <span class="icon-ico-arrowcopy"></span>
+                                        <span>Previous</span>
+                                    </a>
+                                {{/if}}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-xs-4 u-align-center">Page {{pagination.currentDisplayPage}} of {{pagination.totalPages}}</div>
+                <div class="col-xs-4">
+                    <nav>
+                        <ul class="pagination pagination-sm u-float-right">
+                            <li class="page-item">
+
+                                {{#if (eq pagination.totalPages pagination.currentDisplayPage)}}
+                                    <span class="page-link next is-disabled" aria-label="Next">
+                                        <span class="icon-ico-arrow-blue"></span>
+                                        <span>Next</span>
+                                    </span>
+                                {{else}}
+                                    <a class="page-link next" href="{{pagination.next}}" aria-label="Next">
+                                        <span class="icon-ico-arrow-blue"></span>
+                                        <span>Next</span>
+                                    </a>
+                                {{/if}}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

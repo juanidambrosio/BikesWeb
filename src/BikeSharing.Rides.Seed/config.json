@@ -1,0 +1,10 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=bikesharing-services-rides;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "dates": {
+    "maxDay": "16",
+    "maxHour": "08",
+    "forceMonth": "11"
+  }
+}

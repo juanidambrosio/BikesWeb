@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNet.Identity
+<li class="nav-item nav-user-block">
+    @if (ViewBag.UserName != null)
+    {
+        <div class="nav-item nav-user-info hidden-sm-down">
+            <span class="nav-link">@ViewBag.UserName</span>
+        </div>
+        <div class="nav-item nav-avatar hidden-xs-down" style="background-image: url(@ViewBag.UserImage)"></div>
+
+        <div class="nav-item nav-user-info">
+            <a class="nav-link" href="@System.Web.Configuration.WebConfigurationManager.AppSettings["bikes:Logout"]">
+                <span class="icon-switch"></span>
+            </a>
+        </div>
+    }
+</li>

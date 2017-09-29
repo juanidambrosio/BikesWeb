@@ -1,0 +1,19 @@
+﻿{
+  "bindings": [
+    {
+      "type": "blobTrigger",
+      "name": "image",
+      "path": "avatar-input/{filename}.jpg",
+      "connection": "functionfaff300ba605_STORAGE",
+      "direction": "in"
+    },
+    {
+      "type": "blob",
+      "name": "outputBlob",
+      "path": "avatar-output/{filename}.jpg",
+      "connection": "AzureWebJobsDashboard",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}

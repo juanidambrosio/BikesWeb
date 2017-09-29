@@ -1,0 +1,14 @@
+﻿REFERENCE ASSEMBLY RidePositionsDB.HeaderOutputter;
+
+@content =
+SELECT id,
+    rideId,
+    latitude,
+    longitude,
+    ts
+FROM RidePositionsDB.dbo.RidePositions;
+
+
+OUTPUT @content
+TO @"/RidePositions/LastRidePositions.csv"
+USING Outputters.Csv();

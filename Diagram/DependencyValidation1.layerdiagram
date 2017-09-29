@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="20afad7c-3502-4c0b-a943-3b52094a7ed4" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="c0bbf9ce-4803-4467-8307-ac55219b613d" name="MyBikes.Web">
+      <childLayers>
+        <layer Id="0a3cb198-0d1b-4f5b-8a7b-05e79b9604af" name="Controllers">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="03f89899-2740-42ea-8f80-9dbf647f7cf4" direction="Forward">
+              <layerMoniker Id="af83fe7c-0c46-4fb6-916c-7bf1a57b836e" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <references>
+            <reference Id="4af4945c-69a1-4f2d-84f8-230984ffee79" name="Controllers">
+              <ArtifactNode Label="Controllers" Category="CodeSchema_ProjectItem" Id="(Assembly=&quot;$(PersonalUri)/Visual Studio 2017/Projects/BikeSharing360/src/MyBikes.Web/MyBikes.Web.csproj&quot; File=&quot;$(PersonalUri)/Visual Studio 2017/Projects/BikeSharing360/src/MyBikes.Web/Controllers/&quot;)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=MyBikes.Web Namespace=MyBikes.Web.Controllers Type=HomeController)" Label="HomeController" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+        <layer Id="af83fe7c-0c46-4fb6-916c-7bf1a57b836e" name="Models">
+          <references>
+            <reference Id="238ac9e5-8621-4649-a193-a65c306d4c4b" name="Models">
+              <ArtifactNode Label="Models" Category="CodeSchema_ProjectItem" Id="(Assembly=&quot;$(PersonalUri)/Visual Studio 2017/Projects/BikeSharing360/src/MyBikes.Web/MyBikes.Web.csproj&quot; File=&quot;$(PersonalUri)/Visual Studio 2017/Projects/BikeSharing360/src/MyBikes.Web/Models/&quot;)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=MyBikes.Web Namespace=MyBikes.Web.Models.Home Type=ClientsViewModel)" Label="ClientsViewModel" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+      <references>
+        <reference Id="10efdd5a-b12c-4adb-bfd9-9879f9f27f03" name="MyBikes.Web">
+          <ArtifactNode Label="MyBikes.Web" Category="CodeSchema_Project" Id="(Assembly=&quot;$(PersonalUri)/Visual Studio 2017/Projects/BikeSharing360/src/MyBikes.Web/MyBikes.Web.csproj&quot;)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MyBikes.Web)" Label="MyBikes.Web.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>

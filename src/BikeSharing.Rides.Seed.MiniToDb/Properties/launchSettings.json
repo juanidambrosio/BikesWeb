@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BikeSharing.Rides.Seed.MiniToDb": {
+      "commandName": "Project",
+      "commandLineArgs": "--mini=c:\\routes-mini"
+    }
+  }
+}

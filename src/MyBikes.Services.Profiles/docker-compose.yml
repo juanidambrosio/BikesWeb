@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  mybikes.services.profiles:
+    image: user/mybikes.services.profiles${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80"

@@ -1,0 +1,7 @@
+﻿{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=bikesharing-services-rides;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "apikey": "AnoR5ffZkPrEXLNrjRttgCObsNvTm5dTVKCNF0Pz0_rNSnDyYXly8G7BilH6w4eg",
+  "routescount": -1
+}

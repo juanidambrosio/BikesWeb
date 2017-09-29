@@ -1,0 +1,44 @@
+﻿CREATE DATABASE IF NOT EXISTS RidePositionsDB;
+
+DROP FUNCTION IF EXISTS RidePositionsDB.dbo.RidesView;
+CREATE FUNCTION RidePositionsDB.dbo.RidesView()
+RETURNS @result TABLE
+(
+    id long,
+    rideId int,
+    latitude decimal,
+    longitude decimal,
+    ts DateTime
+)
+AS
+BEGIN
+
+    @result = EXTRACT
+        id long,
+        rideId int,
+        latitude decimal,
+        longitude decimal,
+        ts DateTime
+    FROM @"/RidePositions/RidePositions.csv"
+    USING Extractors.Csv();
+    RETURN;
+END;
+
+DROP TABLE IF EXISTS RidePositionsDB.dbo.RidePositions;
+
+
+@rides = RidePositionsDB.dbo.RidesView();
+CREATE TABLE RidePositionsDB.dbo.RidePositions
+(
+    INDEX idx_ridePositions
+    CLUSTERED(Day ASC)
+    DISTRIBUTED BY HASH(Day)   
+) AS
+
+SELECT ts.Day AS Day,
+    id,
+    rideId,
+    latitude,
+    longitude,
+    ts
+FROM @rides;
